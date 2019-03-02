@@ -1,6 +1,6 @@
 ## Technologies Used
 
-I have used React for the front-end. Since this application involves fetching data from an api which included CPU, RAM and Total Utilization data, I created a function that could generate random data every second. The implementation of the same can be seen on the actions.js file. 
+I have used React and Semantic-UI for the front-end. Since this application involves fetching data from an api which included CPU, RAM and Total Utilization data, I created a function that could generate random data every second. The implementation of the same can be seen on the actions.js file. 
 For sending emails, I created an Email Client using Express and SendGrid, which I hosted on heroku.
 I hooked up the Email Client API with the actions and whenever the TotalUtilization exceeeded 50% for straight 10 seconds, I used an action to trigger the email client to send an email to the end user.
 
