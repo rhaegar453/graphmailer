@@ -14,6 +14,12 @@ const reducer=(state=initialStore, action)=>{
                 modalOpen:!state.modalOpen
             }
         }
+        case actionTypes.GET_DATA:{
+            return{
+                ...state,
+                data:[...state.data, action.payload]
+            }
+        }
         default:
             return state
     }

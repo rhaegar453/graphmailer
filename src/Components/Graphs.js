@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {getDataAsnc} from '../Store/actions';
+
 import {
   BarChart,
   CartesianGrid,
@@ -25,50 +27,55 @@ class Home extends React.Component {
           date: "Page A",
           RAM: 40,
           CPU: 24,
-          total: 24
+          totalUtilization: 24
         },
         {
           name: "Page B",
           RAM: 30,
           CPU: 13,
-          total: 22
+          totalUtilization: 22
         },
         {
           name: "Page C",
           RAM: 20,
           CPU: 98,
-          total: 22
+          totalUtilization: 22
         },
         {
           name: "Page D",
           RAM: 27,
           CPU: 39,
-          total: 20
+          totalUtilization: 20
         },
         {
           name: "Page E",
           RAM: 18,
           CPU: 48,
-          total: 21
+          totalUtilization: 21
         },
         {
           name: "Page F",
           RAM: 23,
           CPU: 38,
-          total: 25
+          totalUtilization: 25
         },
         {
           name: "Page G",
           RAM: 34,
           CPU: 43,
-          date: 21
+          totalUtilization: 21
         }
       ]
     };
   }
+  componentDidMount(){  
+      this.props.getDataAsnc();
+  }
   modalToggle=()=>{
       this.props.modalToggle()
   }
+
+
   render() {
     return (
       <div>
@@ -78,7 +85,7 @@ class Home extends React.Component {
             <BarChart
               width={600}
               height={300}
-              data={this.state.data}
+              data={this.props.data}
               barGap={4}
             >
               <CartesianGrid strokeDasharray="3 3" />
@@ -92,15 +99,15 @@ class Home extends React.Component {
             <LineChart
               width={600}
               height={300}
-              data={this.state.data}
+              data={this.props.data}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="Total" />
-              <YAxis />
+              <XAxis dataKey="Total" label="Time"/>
+              <YAxis  label="Total CPU Utilization"/>
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="total" stroke="#8884d8" />
+              <Line type="monotone" dataKey="totalUtilization" stroke="#8884d8" />
             </LineChart>
           </Grid.Row>
           <Grid.Row centered>
@@ -116,12 +123,14 @@ class Home extends React.Component {
 
 const mapStateToProps=(state)=>{
     return{
+        data:state.ui.data
     }
 }
 
 const mapDispatchToProps=(dispatch)=>{
     return{
-        modalToggle:()=>dispatch(modalToggle())
+        modalToggle:()=>dispatch(modalToggle()),
+        getDataAsnc:()=>dispatch(getDataAsnc())
     }
 }
 
