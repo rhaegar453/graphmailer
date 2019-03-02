@@ -10,10 +10,6 @@ class Navigation extends Component {
     this.props.history.push("/Dashboard");
   };
 
-  handleDataClick = () => {
-    this.setState({ activeItem: "Data" });
-    this.props.history.push("/Data");
-  };
 
   handleTriggeredClick = () => {
     this.setState({ activeItem: "Triggered" });
@@ -29,16 +25,6 @@ class Navigation extends Component {
             name="Dashboard"
             active={activeItem === "Dashboard"}
             onClick={this.handleDashboardClick}
-          />
-          <Menu.Item
-            name="Data"
-            active={activeItem === "Data"}
-            onClick={this.handleDataClick}
-          />
-          <Menu.Item
-            name="Triggered"
-            active={activeItem === "Triggered"}
-            onClick={this.handleTriggeredClick}
           />
         </Menu>
       </div>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {getDataAsnc, trigger} from '../Store/actions';
+import {triggerDetails, dataDetails} from '../Store/actions';
 
 import {
   BarChart,
@@ -26,20 +27,24 @@ class Home extends React.Component {
       this.props.getDataAsnc();
   }
   modalToggle=()=>{
-      this.props.modalToggle()
+      this.props.dataDetails();
+      this.props.modalToggle();
+  }
+  triggersToggle=()=>{
+      this.props.triggerDetails();
+      this.props.modalToggle();
   }
 
-  
   render() {
     return (
       <div>
           <ModalC></ModalC>
         <Grid>
-          <Grid.Row>
+          <Grid.Row centered>
             <BarChart
             barSize={20}
-              width={600}
-              height={300}
+              width={700}
+              height={400}
               data={this.props.data}
               barGap={4}
             >
@@ -52,8 +57,8 @@ class Home extends React.Component {
               <Bar dataKey="CPU" fill="#82ca9d" />
             </BarChart>
             <LineChart
-              width={600}
-              height={300}
+              width={700}
+              height={400}
               data={this.props.data}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
@@ -66,9 +71,8 @@ class Home extends React.Component {
             </LineChart>
           </Grid.Row>
           <Grid.Row centered>
-            <div>
-              <Button color="red" onClick={this.modalToggle}>Show More Details</Button>
-            </div>
+              <Button color="green" onClick={this.modalToggle}>Show More Details</Button>
+              <Button color="red" onClick={this.triggersToggle}>Show My Triggers</Button>
           </Grid.Row>
         </Grid>
       </div>
@@ -86,7 +90,9 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return{
         modalToggle:()=>dispatch(modalToggle()),
-        getDataAsnc:()=>dispatch(getDataAsnc())
+        getDataAsnc:()=>dispatch(getDataAsnc()),
+        triggerDetails:()=>dispatch(triggerDetails()),
+        dataDetails:()=>dispatch(dataDetails())
     }
 }
 

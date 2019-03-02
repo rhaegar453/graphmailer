@@ -7,3 +7,7 @@ export const TRIGGER_FAIL="TRIGGER_FAIL";
 
 
 export const RESET_TIMER="RESET_TIMER";
+
+export const TRIGGER_DETAILS="TRIGGER_DETAILS";
+export const DATA_DETAILS="ACTION_DETAILS";
+

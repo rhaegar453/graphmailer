@@ -38,6 +38,18 @@ export const startTime=()=>{
     }
 }
 
+export const triggerDetails=()=>{
+    return {
+        type:actionTypes.TRIGGER_DETAILS
+    }
+}
+
+export const dataDetails=()=>{
+    return{
+        type:actionTypes.DATA_DETAILS
+    }
+}
+
 export const resetTime=()=>{
     return{
         type:actionTypes.RESET_TIMER
@@ -90,13 +102,13 @@ export const trigger=()=>{
 
 export const getDataAsnc=()=>{
     return (dispatch, getState)=>{
-        // if(getState().ui.count>1){
-        //     dispatch(trigger());
-        // }
+        if(getState().ui.count>1){
+            dispatch(trigger());
+        }
         setInterval(()=>{
             let x=new Data();
             if(getState().ui.count>1){
-                dispatch(trigger());
+               dispatch(trigger());
             }
             if(x.totalUtilization>=50){
                 dispatch(startTime());

@@ -6,7 +6,8 @@ const initialStore={
     isRunning:false,
     triggerData:[],
     count:0,
-    loading:false
+    loading:false,
+    triggerDetails:false
 }
 
 
@@ -65,6 +66,18 @@ const reducer=(state=initialStore, action)=>{
                 ...state,
                 loading:false,
                 triggerData:state.triggerData.concat(data)
+            }
+        }
+        case actionTypes.TRIGGER_DETAILS:{
+            return{
+                ...state,
+                triggerDetails:true
+            }
+        }
+        case actionTypes.DATA_DETAILS:{
+            return{
+                ...state,
+                triggerDetails:false
             }
         }
         default:

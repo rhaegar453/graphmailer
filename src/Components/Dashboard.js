@@ -3,7 +3,6 @@ import Graphs from './Graphs';
 import { Grid } from 'semantic-ui-react';
 
 
-
 export default class Home extends React.Component{
     constructor(props){
         super(props);
