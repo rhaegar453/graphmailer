@@ -1,2 +1,9 @@
 export const MODAL_TOGGLE="MODAL_TOGGLE";
 export const GET_DATA="GET_DATA";
+export const START_TIMER="START_TIMER";
+export const TRIGGER_START="TRIGGER_START";
+export const TRIGGER_SUCCESS="TRIGGER_SUCCESS";
+export const TRIGGER_FAIL="TRIGGER_FAIL";
+
+
+export const RESET_TIMER="RESET_TIMER";

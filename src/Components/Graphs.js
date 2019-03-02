@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {getDataAsnc} from '../Store/actions';
+import {getDataAsnc, trigger} from '../Store/actions';
 
 import {
   BarChart,
@@ -21,52 +21,6 @@ import { Grid, Button, Modal, Portal, Header, Icon } from "semantic-ui-react";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: [
-        {
-          date: "Page A",
-          RAM: 40,
-          CPU: 24,
-          totalUtilization: 24
-        },
-        {
-          name: "Page B",
-          RAM: 30,
-          CPU: 13,
-          totalUtilization: 22
-        },
-        {
-          name: "Page C",
-          RAM: 20,
-          CPU: 98,
-          totalUtilization: 22
-        },
-        {
-          name: "Page D",
-          RAM: 27,
-          CPU: 39,
-          totalUtilization: 20
-        },
-        {
-          name: "Page E",
-          RAM: 18,
-          CPU: 48,
-          totalUtilization: 21
-        },
-        {
-          name: "Page F",
-          RAM: 23,
-          CPU: 38,
-          totalUtilization: 25
-        },
-        {
-          name: "Page G",
-          RAM: 34,
-          CPU: 43,
-          totalUtilization: 21
-        }
-      ]
-    };
   }
   componentDidMount(){  
       this.props.getDataAsnc();
@@ -75,7 +29,7 @@ class Home extends React.Component {
       this.props.modalToggle()
   }
 
-
+  
   render() {
     return (
       <div>
@@ -83,13 +37,14 @@ class Home extends React.Component {
         <Grid>
           <Grid.Row>
             <BarChart
+            barSize={20}
               width={600}
               height={300}
               data={this.props.data}
               barGap={4}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" padding={{ left:5}} allowDataOverflow tickSize={5}/>
               <YAxis />
               <Tooltip />
               <Legend />
@@ -123,7 +78,8 @@ class Home extends React.Component {
 
 const mapStateToProps=(state)=>{
     return{
-        data:state.ui.data
+        data:state.ui.data,
+        count:state.ui.count
     }
 }
 
